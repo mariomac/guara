@@ -39,3 +39,14 @@ func TestEventually_Success(t *testing.T) {
 		num--
 	})
 }
+
+func TestEventually_Interval(t *testing.T) {
+	innerTest := &testing.T{}
+	executions := 0
+	Eventually(innerTest, 10*time.Millisecond, func(t require.TestingT) {
+		executions++
+		t.FailNow()
+	}, Interval(20*time.Second))
+	assert.True(t, innerTest.Failed())
+	assert.Equal(t, 1, executions)
+}
