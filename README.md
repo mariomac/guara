@@ -2,6 +2,10 @@
 
 My own personal Go toolset
 
+## `pkg/cache`
+
+Cache implementations.
+
 ## `pkg/test`
 
 Some tools used in testing.
