@@ -6,6 +6,10 @@ My own personal Go toolset
 
 Cache implementations.
 
+## `pkg/rate`
+
+Tools for rate calculation and limiting.
+
 ## `pkg/test`
 
 Some tools used in testing.
