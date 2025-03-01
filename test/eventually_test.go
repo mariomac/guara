@@ -1,7 +1,6 @@
 package test
 
 import (
-	"fmt"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -128,20 +127,17 @@ func fatalEventually(t *testing.T, timeout time.Duration, testFunc func(_ requir
 }
 
 func TestEventually_AllGoroutinesEndBeforeEventuallyEnds(t *testing.T) {
-	//count := atomic.Int64{}
-	//count.Store(int64(0))
-	//for i := 0; i < 100; i++ {
+	count := atomic.Int64{}
+	count.Store(int64(0))
+	for i := 0; i < 100; i++ {
 		add := atomic.Int64{}
 		add.Store(0)
-		Eventually(t, 100 * time.Millisecond, func(t require.TestingT) {
-			if add.Load() > 0 {
-				//count.Add(1)
-			}
+		Eventually(t, 100*time.Millisecond, func(t require.TestingT) {
+			defer count.Add(1)
 			add.Add(1)
-			fmt.Println("vuelta", add.Load())
 			// this test is expected to fail until number 33
-			assert.Equal(t, 33, add.Load())
+			assert.EqualValues(t, 10, add.Load())
 		})
-		//require.Equal(t, 3*(i+1), count.Load())
-	//}
+		require.EqualValues(t, 10*(i+1), count.Load())
+	}
 }
