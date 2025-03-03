@@ -6,13 +6,17 @@ My own personal Go toolset
 
 Cache implementations.
 
+## Package `casing`
+
+String casing conversion tools. For example, from `CamelCase` or `DromedaryCase` to `dot.case` or `snake_case`.
+
 ## Package `err`
 
 Error handling tools.
 
 ## Package `maps`
 
-
+Esoteric data structures based on maps.
 
 ## Package `rate`
 
