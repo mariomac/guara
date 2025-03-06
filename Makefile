@@ -3,7 +3,7 @@ all: fmt lint test
 
 fmt:
 	@echo "=== [ fmt ]: formatting code..."
-	goimports -w ./pkg/
+	goimports -w ./
 
 lint:
 	@echo "=== [ lint ]: Validating source code running golint..."
